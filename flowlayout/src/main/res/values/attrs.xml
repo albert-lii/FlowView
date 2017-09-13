@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--流布局控件-->
+    <declare-styleable name="FlowLayout">
+        <!-- item 在一行中的横向对齐方式-->
+        <attr name="flow_horalign">
+            <!-- item 左对齐-->
+            <enum name="left" value="0" />
+            <!-- item 居中对齐-->
+            <enum name="middle" value="1" />
+            <!-- item 右对齐-->
+            <enum name="right" value="2" />
+        </attr>
+        <!-- item 在一行中的纵向对齐方式，当设置 flow_height 时，此属性无效-->
+        <attr name="flow_vertalign">
+            <enum name="top" value="0" />
+            <enum name="middle" value="1" />
+            <enum name="bottom" value="2" />
+        </attr>
+        <!--流布局的 item 的高度-->
+        <attr name="flow_height" format="dimension" />
+        <!--流布局的 item 横向间距-->
+        <attr name="flow_hspace" format="dimension" />
+        <!--流布局的 item 纵向间距-->
+        <attr name="flow_vspace" format="dimension" />
+        <!--流布局最多显示的行数-->
+        <attr name="flow_maxrows" format="integer" />
+    </declare-styleable>
+</resources>
