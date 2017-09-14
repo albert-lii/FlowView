@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.liyi.flowview.FlowConstants;
+import com.liyi.flowview.FlowDefine;
 import com.liyi.flowview.FlowView;
 
 import java.util.ArrayList;
@@ -76,22 +76,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_hleft:
-                flowLayout.setFlowHorAlign(FlowConstants.FLOW_HOR_LEFT);
+                flowLayout.setFlowHorAlign(FlowDefine.FLOW_HOR_LEFT);
                 break;
             case R.id.btn_hmiddle:
-                flowLayout.setFlowHorAlign(FlowConstants.FLOW_HOR_MIDDLE);
+                flowLayout.setFlowHorAlign(FlowDefine.FLOW_HOR_MIDDLE);
                 break;
             case R.id.btn_hright:
-                flowLayout.setFlowHorAlign(FlowConstants.FLOW_HOR_RIGHT);
+                flowLayout.setFlowHorAlign(FlowDefine.FLOW_HOR_RIGHT);
                 break;
             case R.id.btn_vtop:
-                flowLayout.setFlowVertAlign(FlowConstants.FLOW_VERT_TOP);
+                flowLayout.setFlowVertAlign(FlowDefine.FLOW_VERT_TOP);
                 break;
             case R.id.btn_vmiddle:
-                flowLayout.setFlowVertAlign(FlowConstants.FLOW_VERT_MIDDLE);
+                flowLayout.setFlowVertAlign(FlowDefine.FLOW_VERT_MIDDLE);
                 break;
             case R.id.btn_vbottom:
-                flowLayout.setFlowVertAlign(FlowConstants.FLOW_VERT_BOTTOM);
+                flowLayout.setFlowVertAlign(FlowDefine.FLOW_VERT_BOTTOM);
                 break;
             case R.id.btn_maxr1:
                 flowLayout.setFlowMaxRows(1);
@@ -100,7 +100,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 flowLayout.setFlowMaxRows(2);
                 break;
             case R.id.btn_maxr3:
-                flowLayout.setFlowMaxRows(FlowConstants.INVALID_VAL);
+                flowLayout.setFlowMaxRows(FlowDefine.INVALID_VAL);
                 break;
             case R.id.btn_update1:
                 update1();

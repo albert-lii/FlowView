@@ -1,7 +1,7 @@
 package com.liyi.flowview;
 
 
-public class FlowConstants {
+public class FlowDefine {
     // 无效的值
     public static final int INVALID_VAL = -1;
 
