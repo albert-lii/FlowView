@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 /**
- * 流布局控件（例如：标签流）
+ * 流布局控件
  */
 public class FlowView extends ViewGroup {
     /**
