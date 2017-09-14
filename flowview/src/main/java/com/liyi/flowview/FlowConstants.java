@@ -1,4 +1,4 @@
-package com.liyi.library;
+package com.liyi.flowview;
 
 
 public class FlowConstants {

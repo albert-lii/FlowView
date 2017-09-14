@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.liyi.library.FlowConstants;
-import com.liyi.library.FlowLayout;
+import com.liyi.flowview.FlowConstants;
+import com.liyi.flowview.FlowView;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_vtop, btn_vmiddle, btn_vbottom;
     private Button btn_row1, btn_row2, btn_row_nolimit;
     private Button btn_update1, btn_update2, btn_update3;
-    private FlowLayout flowLayout;
+    private FlowView flowLayout;
 
     private MainAdapter mAdapter;
     private ArrayList<String> mList;
@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_update1 = (Button) findViewById(R.id.btn_update1);
         btn_update2 = (Button) findViewById(R.id.btn_update2);
         btn_update3 = (Button) findViewById(R.id.btn_update3);
-        flowLayout = (FlowLayout) findViewById(R.id.flowLayout);
+        flowLayout = (FlowView) findViewById(R.id.flowLayout);
 
         mAdapter = new MainAdapter();
         mList = new ArrayList<String>();
@@ -64,7 +64,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_update1.setOnClickListener(this);
         btn_update2.setOnClickListener(this);
         btn_update3.setOnClickListener(this);
-        flowLayout.setOnItemClickListener(new FlowLayout.OnItemClickListener() {
+        flowLayout.setOnItemClickListener(new FlowView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
                 Toast.makeText(MainActivity.this, "我是" + position + "号", Toast.LENGTH_SHORT).show();

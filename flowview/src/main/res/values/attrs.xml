@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--流布局控件-->
-    <declare-styleable name="FlowLayout">
+    <declare-styleable name="FlowView">
         <!-- item 在一行中的横向对齐方式-->
         <attr name="flow_horalign">
             <!-- item 左对齐-->

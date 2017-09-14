@@ -117,7 +117,7 @@
                 android:text="数据刷新3" />
         </LinearLayout>
 
-        <com.liyi.library.FlowLayout
+        <com.liyi.flowview.FlowView
             android:id="@+id/flowLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

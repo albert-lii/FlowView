@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.liyi.library.BaseFlowAdapter;
+import com.liyi.flowview.BaseFlowAdapter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.liyi.library;
+package com.liyi.flowview;
 
 
 import android.content.Context;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * 流布局控件（例如：标签流）
  */
-public class FlowLayout extends ViewGroup {
+public class FlowView extends ViewGroup {
     /**
      * 默认值
      */
@@ -40,19 +40,19 @@ public class FlowLayout extends ViewGroup {
     private OnItemClickListener mItemClickListener;
 
 
-    public FlowLayout(Context context) {
+    public FlowView(Context context) {
         super(context);
         this.mContext = context;
         init(null);
     }
 
-    public FlowLayout(Context context, AttributeSet attrs) {
+    public FlowView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
         init(attrs);
     }
 
-    public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FlowView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         init(attrs);
@@ -66,14 +66,14 @@ public class FlowLayout extends ViewGroup {
     private void init(AttributeSet attrs) {
         initParams();
         if (attrs != null) {
-            TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.FlowLayout);
+            TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.FlowView);
             if (a != null) {
-                mFlowHorAlign = a.getInt(R.styleable.FlowLayout_flow_horalign, mFlowHorAlign);
-                mFlowVertAlign = a.getInt(R.styleable.FlowLayout_flow_vertalign, mFlowVertAlign);
-                mFlowHeight = a.getDimension(R.styleable.FlowLayout_flow_height, mFlowHeight);
-                mFlowHspace = a.getDimension(R.styleable.FlowLayout_flow_hspace, mFlowHspace);
-                mFlowVspace = a.getDimension(R.styleable.FlowLayout_flow_vspace, mFlowVspace);
-                mFlowMaxRows = a.getInt(R.styleable.FlowLayout_flow_maxrows, mFlowMaxRows);
+                mFlowHorAlign = a.getInt(R.styleable.FlowView_flow_horalign, mFlowHorAlign);
+                mFlowVertAlign = a.getInt(R.styleable.FlowView_flow_vertalign, mFlowVertAlign);
+                mFlowHeight = a.getDimension(R.styleable.FlowView_flow_height, mFlowHeight);
+                mFlowHspace = a.getDimension(R.styleable.FlowView_flow_hspace, mFlowHspace);
+                mFlowVspace = a.getDimension(R.styleable.FlowView_flow_vspace, mFlowVspace);
+                mFlowMaxRows = a.getInt(R.styleable.FlowView_flow_maxrows, mFlowMaxRows);
                 a.recycle();
             }
         }

@@ -1,4 +1,4 @@
-package com.liyi.library;
+package com.liyi.flowview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
