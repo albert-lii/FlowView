@@ -7,7 +7,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 
 ## 推荐
 - [AutoGridView](https://github.com/albert-lii/AutoGridView) 宫格控件，QQ空间九宫格、普通宫格模式、点击添加照片...
-- [Sutils](https://github.com/albert-lii/SUtils) 轻量的常用的工具类库
+- [SUtils](https://github.com/albert-lii/SUtils) 轻量的常用的工具类库
 
 ## 演示
 先来看看效果吧！  
