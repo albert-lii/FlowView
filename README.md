@@ -30,7 +30,7 @@ Step 1:
 Step 2:
 
     dependencies {
-            compile 'com.github.albert-lii:FlowView:1.0.4'
+            compile 'com.github.albert-lii:FlowView:1.0.5'
     }
 ```
 
