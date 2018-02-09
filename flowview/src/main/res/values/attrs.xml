@@ -24,6 +24,6 @@
         <!--流布局的 item 纵向间距-->
         <attr name="flow_vspace" format="dimension" />
         <!--流布局最多显示的行数-->
-        <attr name="flow_maxrows" format="integer" />
+        <attr name="flow_maxRows" format="integer" />
     </declare-styleable>
 </resources>

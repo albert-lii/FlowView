@@ -1,4 +1,4 @@
-package com.liyi.flowview;
+package com.liyi.view;
 
 
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 
@@ -17,25 +18,29 @@ public class FlowView extends ViewGroup {
     /**
      * 默认值
      */
-    // 默认流布局的高度
-    private final int DEF_FLOW_HEIGHT = FlowDefine.INVALID_VAL;
+    // 默认流布局横向对齐方式
+    private final int DEF_FlOW_HORALIGN = FlowConfig.FLOW_HOR_LEFT;
+    // 默认流布局纵向对齐方式
+    private final int DEF_FlOW_VERTALIGN = FlowConfig.FLOW_VERT_MIDDLE;
+    // 默认流布局的行高
+    private final int DEF_FLOW_HEIGHT = FlowConfig.INVALID_VAL;
     // 默认流布局最大显示行数
-    private final int DEF_FLOW_MAX_ROWS = FlowDefine.INVALID_VAL;
+    private final int DEF_FLOW_MAX_ROWS = FlowConfig.INVALID_VAL;
     // 默认流布局的横向间距
     private final int DEF_FlOW_HSPACE = 10;
     // 默认流布局的纵向间距
     private final int DEF_FlOW_VSPACE = 10;
 
-    private float mFlowHeight;
-    private int mFlowMaxRows;
     private int mFlowHorAlign;
     private int mFlowVertAlign;
+    private float mFlowHeight;
+    private int mFlowMaxRows;
     private float mFlowHspace;
     private float mFlowVspace;
     // 记录流布局的行信息 ===> item 的个数、最后一个 item 的序号、行高度
     private ArrayList<float[]> mFlowParamList;
 
-    private BaseFlowAdapter mAdapter;
+    private BaseAdapter mAdapter;
     private Context mContext;
     private OnItemClickListener mItemClickListener;
 
@@ -73,7 +78,7 @@ public class FlowView extends ViewGroup {
                 mFlowHeight = a.getDimension(R.styleable.FlowView_flow_height, mFlowHeight);
                 mFlowHspace = a.getDimension(R.styleable.FlowView_flow_hspace, mFlowHspace);
                 mFlowVspace = a.getDimension(R.styleable.FlowView_flow_vspace, mFlowVspace);
-                mFlowMaxRows = a.getInt(R.styleable.FlowView_flow_maxrows, mFlowMaxRows);
+                mFlowMaxRows = a.getInt(R.styleable.FlowView_flow_maxRows, mFlowMaxRows);
                 a.recycle();
             }
         }
@@ -84,12 +89,12 @@ public class FlowView extends ViewGroup {
         mFlowMaxRows = DEF_FLOW_MAX_ROWS;
         mFlowHspace = DEF_FlOW_HSPACE;
         mFlowVspace = DEF_FlOW_VSPACE;
-        mFlowHorAlign = FlowDefine.FLOW_HOR_LEFT;
-        mFlowVertAlign = FlowDefine.FLOW_VERT_MIDDLE;
+        mFlowHorAlign = DEF_FlOW_HORALIGN;
+        mFlowVertAlign = DEF_FlOW_VERTALIGN;
         mFlowParamList = new ArrayList<float[]>();
     }
 
-    public void setAdapter(BaseFlowAdapter adapter) {
+    public void setAdapter(BaseAdapter adapter) {
         this.mAdapter = adapter;
         removeAllViews();
         if (mAdapter != null && mAdapter.getCount() > 0) {
@@ -98,7 +103,7 @@ public class FlowView extends ViewGroup {
     }
 
     /**
-     * 添加itemView
+     * 添加 itemView
      */
     private void addItemView() {
         for (int i = 0; i < mAdapter.getCount(); i++) {
@@ -109,7 +114,7 @@ public class FlowView extends ViewGroup {
     }
 
     /**
-     * 为itemView添加点击事件
+     * 为 itemView 添加点击事件
      *
      * @param view
      * @param position
@@ -162,7 +167,7 @@ public class FlowView extends ViewGroup {
                     if (i == (childCount - 1)) {
                         /** 提交最后一行的信息 */
                         // 如果没有设置 child 的高度，则采用测量出的高度 y
-                        if (mFlowHeight == FlowDefine.INVALID_VAL) {
+                        if (mFlowHeight == FlowConfig.INVALID_VAL) {
                             mFlowParamList.add(new float[]{ecount, i, y});
                             h = h + y + mFlowVspace;
                         } else {
@@ -175,7 +180,7 @@ public class FlowView extends ViewGroup {
                 else {
                     /** 提交本行信息 */
                     // 如果没有设置 child 的高度，则采用测量出的高度 y
-                    if (mFlowHeight == FlowDefine.INVALID_VAL) {
+                    if (mFlowHeight == FlowConfig.INVALID_VAL) {
                         mFlowParamList.add(new float[]{ecount, i, y});
                         h = h + y + mFlowVspace;
                     } else {
@@ -192,7 +197,7 @@ public class FlowView extends ViewGroup {
             else {
                 /** 提交上一行信息 */
                 // 如果没有设置 child 的高度，则采用测量出的高度 y
-                if (mFlowHeight == FlowDefine.INVALID_VAL) {
+                if (mFlowHeight == FlowConfig.INVALID_VAL) {
                     mFlowParamList.add(new float[]{ecount, i - 1, y});
                     h = h + y + mFlowVspace;
                 } else {
@@ -206,7 +211,7 @@ public class FlowView extends ViewGroup {
                 /** 如果是最后一个 child 需要换行，还需再提交最后一行信息 */
                 if (i == (childCount - 1)) {
                     // 如果没有设置 child 的高度，则采用测量出的高度 y
-                    if (mFlowHeight == FlowDefine.INVALID_VAL) {
+                    if (mFlowHeight == FlowConfig.INVALID_VAL) {
                         mFlowParamList.add(new float[]{ecount, i, y});
                         h = h + ch + mFlowVspace;
                     } else {
@@ -217,7 +222,7 @@ public class FlowView extends ViewGroup {
             }
         }
         // 如果设置了最大显示行数
-        if (mFlowMaxRows != FlowDefine.INVALID_VAL && mFlowMaxRows >= 0) {
+        if (mFlowMaxRows != FlowConfig.INVALID_VAL && mFlowMaxRows >= 0) {
             // 如果测量的行数已经大于最大显示行数
             if (mFlowParamList.size() > mFlowMaxRows) {
                 float tempH = 0;
@@ -242,7 +247,7 @@ public class FlowView extends ViewGroup {
         float y = getPaddingTop();
         for (int i = 0; i < mFlowParamList.size(); i++) {
             // 如果最大显示行数的属性设置有效
-            if (mFlowMaxRows != FlowDefine.INVALID_VAL && mFlowMaxRows >= 0) {
+            if (mFlowMaxRows != FlowConfig.INVALID_VAL && mFlowMaxRows >= 0) {
                 // 如果已经到达最大显示行数，则接下来的逻辑不执行
                 if (mFlowMaxRows < i + 1) {
                     return;
@@ -256,7 +261,7 @@ public class FlowView extends ViewGroup {
             // 本行的高度
             float height = param[2];
             // 如果 child 在一行中是横向左对齐
-            if (mFlowHorAlign == FlowDefine.FLOW_HOR_LEFT) {
+            if (mFlowHorAlign == FlowConfig.FLOW_HOR_LEFT) {
                 x = getPaddingLeft();
             } else {
                 int tempWidth = 0;
@@ -267,7 +272,7 @@ public class FlowView extends ViewGroup {
                 }
                 tempWidth += (ecount - 1) * mFlowHspace;
                 // 如果 child 在一行中是横向居中对齐
-                if (mFlowHorAlign == FlowDefine.FLOW_HOR_MIDDLE) {
+                if (mFlowHorAlign == FlowConfig.FLOW_HOR_MIDDLE) {
                     x = (r - l - tempWidth) / 2.f;
                 }
                 // child 在一行中是横向右对齐
@@ -280,16 +285,16 @@ public class FlowView extends ViewGroup {
                 int cw = child.getMeasuredWidth();
                 int ch = child.getMeasuredHeight();
                 // 如果没有设置 child 的高度
-                if (mFlowHeight == FlowDefine.INVALID_VAL) {
+                if (mFlowHeight == FlowConfig.INVALID_VAL) {
                     // 默认 child 在一行中是纵向顶部对齐
                     float yh = y;
                     if (ch < height) {
                         // 如果 child 在一行中是纵向居中对齐
-                        if (mFlowVertAlign == FlowDefine.FLOW_VERT_MIDDLE) {
+                        if (mFlowVertAlign == FlowConfig.FLOW_VERT_MIDDLE) {
                             yh = y + (height - ch) / 2f;
                         }
                         // 如果 child 在一行中是纵向底部对齐
-                        else if (mFlowVertAlign == FlowDefine.FLOW_VERT_BOTTOM) {
+                        else if (mFlowVertAlign == FlowConfig.FLOW_VERT_BOTTOM) {
                             yh = y + height - ch;
                         }
                     }
@@ -340,7 +345,7 @@ public class FlowView extends ViewGroup {
     }
 
     /**
-     * 注：当设置了flow_height后，此属性无效
+     * 注：当设置了 flow_height 后，此属性无效
      *
      * @param flowVertAlign
      */

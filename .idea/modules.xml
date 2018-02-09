@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FlowView.iml" filepath="$PROJECT_DIR$/FlowView.iml" />
+      <module fileurl="file://E:\Android-Github\FlowView\FlowView.iml" filepath="E:\Android-Github\FlowView\FlowView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\Android-Github\FlowView\app\app.iml" filepath="E:\Android-Github\FlowView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/flowview/flowview.iml" filepath="$PROJECT_DIR$/flowview/flowview.iml" />
+      <module fileurl="file://E:\Android-Github\FlowView\flowview\flowview.iml" filepath="E:\Android-Github\FlowView\flowview\flowview.iml" />
     </modules>
   </component>
 </project>

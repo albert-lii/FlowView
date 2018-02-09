@@ -1,4 +1,4 @@
-package com.liyi.flowview;
+package com.liyi.view;
 
 import org.junit.Test;
 
