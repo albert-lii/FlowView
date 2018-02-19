@@ -23,34 +23,20 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ```
 
 ## 自定义属性
-```java
-    <!--流布局控件-->
-    <declare-styleable name="FlowView">
-        <!-- item 在一行中的横向对齐方式-->
-        <attr name="flow_horalign">
-            <!-- item 左对齐-->
-            <enum name="left" value="0" />
-            <!-- item 居中对齐-->
-            <enum name="middle" value="1" />
-            <!-- item 右对齐-->
-            <enum name="right" value="2" />
-        </attr>
-        <!-- item 在一行中的纵向对齐方式，当设置 flow_height 时，此属性无效-->
-        <attr name="flow_vertalign">
-            <enum name="top" value="0" />
-            <enum name="middle" value="1" />
-            <enum name="bottom" value="2" />
-        </attr>
-        <!--流布局的 item 的高度-->
-        <attr name="flow_height" format="dimension" />
-        <!--流布局的 item 横向间距-->
-        <attr name="flow_hspace" format="dimension" />
-        <!--流布局的 item 纵向间距-->
-        <attr name="flow_vspace" format="dimension" />
-        <!--流布局最多显示的行数-->
-        <attr name="flow_maxrows" format="integer" />
-    </declare-styleable>
-```
+- flow_horalign（item 在一行中的横向对齐方式）  
+  - left（item 左对齐）
+  - middle（item 横向居中对齐）
+  - right（item 右对齐）  
+  
+- flow_vertalign（item 在一行中的纵向对齐方式，当设置 flow_height 时，此属性无效）  
+  - top（item 上对齐）
+  - middle（item 纵向居中对齐）
+  - bottom（item 底部对齐）  
+
+- flow_height（流布局的 item 的高度）
+- flow_hspace（流布局的 item 横向间距）
+- flow_vspace（流布局的 item 纵向间距）
+- flow_maxrows（流布局最多显示的行数）
 
 ## 使用方法
 - **XML**
