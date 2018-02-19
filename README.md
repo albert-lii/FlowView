@@ -50,8 +50,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 - **代码实现**
 ```java
 1、直接使用BaseAdapter适配器（注：目前FlowView中没有复用机制，所以不需要判断getView（int position，View view，ViewGroup parent）中的view是否为空，进行复用操作）
-
-2、 设置适配器：flowLayout.setAdapter(mAdapter);
+2、设置适配器：flowLayout.setAdapter(mAdapter);
 
 例：
 private void update2() {
