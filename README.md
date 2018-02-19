@@ -25,7 +25,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ## 自定义属性
 - flow_horalign（item 在一行中的横向对齐方式）  
   - left（item 左对齐）
-  - middle（item 横向居中对齐）
+  - middle（item 横向居中对齐）
   - right（item 右对齐）  
   
 - flow_vertalign（item 在一行中的纵向对齐方式，当设置 flow_height 时，此属性无效）  
