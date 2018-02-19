@@ -1,41 +1,29 @@
 # FlowView
+
+## 关于
 FlowView是一款流布局控件，采用Adapter模式，可以自定义item，更加灵活，使用起来就和ListView与BaseAdapter搭配一样简单，提供各种对齐方式，可以自适应
 高度，也可以设置item的高度，可以控制item的最大显示行数...
 
-## 联系方式
-> 电子邮箱：albertlii@163.com
-
 ## 推荐
-- [AutoGridView](https://github.com/albert-lii/AutoGridView) 宫格控件，QQ空间九宫格、普通宫格模式、点击添加照片...
-- [SUtils](https://github.com/albert-lii/SUtils) 轻量的常用的工具类库
+- [SUtils][SUtils] 轻量的常用的工具类库
+- [AutoGridView][AutoGridView] 宫格控件，QQ空间九宫格、普通宫格模式、点击添加照片...
 
 ## 演示
 先来看看效果吧！  
 
-![演示](https://github.com/albert-lii/FlowView/blob/master/screenshot/flowview.gif)  
+![演示][demogif]
 
 > **博客详情：http://blog.csdn.net/liyi1009365545/article/details/77963829**
 
 ## 添加依赖
-```Java
-Step 1:
-
-    allprojects {
-        repositories {
-            ...
-            maven { url 'https://jitpack.io' }
-        }
-    }
-
-Step 2:
-
+```java
     dependencies {
-            compile 'com.github.albert-lii:FlowView:1.0.5'
+         compile 'com.liyi:FlowView:1.0.6'
     }
 ```
 
 ## 自定义属性
-```Java
+```java
     <!--流布局控件-->
     <declare-styleable name="FlowView">
         <!-- item 在一行中的横向对齐方式-->
@@ -66,43 +54,20 @@ Step 2:
 
 ## 使用方法
 - **XML**
-```Java
- <com.liyi.flowview.FlowView
+```java
+ <com.liyi.view.FlowView
     android:id="@+id/flowLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp" />
+    android:layout_height="wrap_content" />
 ```
 
 - **代码实现**
-```Java
-// 必须继承BaseFlowAdapter类
-public class FlowAdapter extends BaseFlowAdapter {
-    private ArrayList<String> mList;
-    private boolean showImg;
+```java
+1、直接使用BaseAdapter适配器（注：目前FlowView中没有复用机制，所以不需要判断getView（int position，View view，ViewGroup parent）中的view是否为空，进行复用操作）
 
-    public FlowAdapter() {
+2、 设置适配器：flowLayout.setAdapter(mAdapter);
 
-    }
-
-    public void setData(ArrayList<String> list, boolean showImg) {
-        this.mList = list;
-        this.showImg = showImg;
-    }
-
-    @Override
-    public int getCount() {
-        return mList != null ? mList.size() : 0;
-    }
-
-    // 可自定义item
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-       ...
-    }
-}
-
-
+例：
 private void update2() {
         mList.clear();
         for (int i = 0; i < 4; i++) {
@@ -114,7 +79,7 @@ private void update2() {
             mList.add("压力背包");
         }
         mAdapter.setData(mList, true);
-        // 直接实现FlowView的setAdapter(BaseFlowAdapter adapter)方法即可
+        // 直接实现FlowView的setAdapter(BaseAdapter adapter)方法即可
         flowLayout.setAdapter(mAdapter);
  }
  
@@ -146,3 +111,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+[SUtils]:https://github.com/albert-lii/SUtils
+[AutoGridView]:https://github.com/albert-lii/AutoGridView
+[demogif]:https://github.com/albert-lii/FlowView/blob/master/screenshot/flowview.gif
+
