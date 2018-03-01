@@ -18,10 +18,20 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 > **博客详情：http://blog.csdn.net/liyi1009365545/article/details/77963829**
 
 ## 添加依赖
+- 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:FlowView:1.0.7'
+         compile 'com.liyi:FlowView:1.0.8'
     }
+```
+- 使用Maven
+```java
+ <dependency>
+   <groupId>com.liyi.view</groupId>
+   <artifactId>flowview</artifactId>
+   <version>1.0.8</version>
+   <type>pom</type>
+ </dependency>
 ```
 
 ## 自定义属性
