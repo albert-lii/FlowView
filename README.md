@@ -21,7 +21,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 - 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:FlowView:1.0.8'
+         compile 'com.liyi.view:flowview:1.0.8'
     }
 ```
 - 使用Maven
@@ -53,7 +53,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ## 使用方法
 - **XML**
 ```java
- <com.liyi.view.FlowView
+ <com.liyi.flow.FlowView
     android:id="@+id/flowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
