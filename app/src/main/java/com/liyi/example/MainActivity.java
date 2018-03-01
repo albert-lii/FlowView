@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.liyi.view.FlowConfig;
-import com.liyi.view.FlowView;
+import com.liyi.flow.FlowConfig;
+import com.liyi.flow.FlowView;
 
 import java.util.ArrayList;
 

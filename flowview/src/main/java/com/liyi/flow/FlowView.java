@@ -1,4 +1,4 @@
-package com.liyi.view;
+package com.liyi.flow;
 
 
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.liyi.view.R;
 
 import java.util.ArrayList;
 

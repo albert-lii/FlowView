@@ -1,4 +1,4 @@
-package com.liyi.view;
+package com.liyi.flow;
 
 
 public class FlowConfig {
