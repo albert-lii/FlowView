@@ -135,10 +135,13 @@ public class FlowView extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (mAdapter == null || getChildCount() == 0) {
+            setMeasuredDimension(widthSize, heightMode == MeasureSpec.EXACTLY ? heightSize : getPaddingTop() + getPaddingBottom());
             return;
         }
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int width = widthSize - getPaddingLeft() - getPaddingRight();
         int childCount = getChildCount();
         // child 的横坐标
@@ -235,7 +238,8 @@ public class FlowView extends ViewGroup {
                 h = tempH;
             }
         }
-        setMeasuredDimension(width + getPaddingLeft() + getPaddingRight(), (int) (h - mFlowVspace + getPaddingTop() + getPaddingBottom()));
+        int height = (int) (h - mFlowVspace + getPaddingTop() + getPaddingBottom());
+        setMeasuredDimension(widthSize, heightMode == MeasureSpec.EXACTLY ? heightSize : height);
     }
 
     @Override
