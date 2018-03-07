@@ -18,10 +18,20 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 > **博客详情：http://blog.csdn.net/liyi1009365545/article/details/77963829**
 
 ## 添加依赖
+- 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:FlowView:1.0.7'
+         compile 'com.liyi.view:flowview:1.0.8'
     }
+```
+- 使用Maven
+```java
+ <dependency>
+   <groupId>com.liyi.view</groupId>
+   <artifactId>flowview</artifactId>
+   <version>1.0.8</version>
+   <type>pom</type>
+ </dependency>
 ```
 
 ## 自定义属性
@@ -43,7 +53,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ## 使用方法
 - **XML**
 ```java
- <com.liyi.view.FlowView
+ <com.liyi.flow.FlowView
     android:id="@+id/flowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
@@ -100,8 +110,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.7-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.7-0f80c1.svg
+[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.8-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/release-v1.0.8-0f80c1.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
