@@ -34,35 +34,38 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ```
 
 ## 自定义属性
-- flow_horalign（item 在一行中的横向对齐方式）  
-  - left（item 左对齐）
+- flow_horalign（item 在一行中的横向对齐方式，默认为 left） 
+  - left（item 左对齐）
   - middle（item 横向居中对齐）
   - right（item 右对齐）  
   
-- flow_vertalign（item 在一行中的纵向对齐方式，当设置 flow_height 时，此属性无效）  
+- flow_vertalign（item 在一行中的纵向对齐方式，默认为 middle，当设置 flow_height 时，此属性无效）   
   - top（item 上对齐）
   - middle（item 纵向居中对齐）
   - bottom（item 底部对齐）  
 
-- flow_height（流布局的 item 的高度）
-- flow_hspace（流布局的 item 横向间距）
-- flow_vspace（流布局的 item 纵向间距）
-- flow_maxrows（流布局最多显示的行数）
+- flow_height（流布局的 item 的高度，默认为自适应）
+- flow_hspace（流布局的 item 横向间距，默认为 10px）
+- flow_vspace（流布局的 item 纵向间距，默认为 10px）
+- flow_maxrows（流布局最多显示的行数，默认为不限制）
 
 ## 使用方法
 - **XML**
 ```java
  <com.liyi.flow.FlowView
-    android:id="@+id/flowLayout"
+    android:id="@+id/flowVi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 ```
 
-- **代码实现**
-```java
-1、直接使用BaseAdapter适配器（注：目前FlowView中没有复用机制，所以不需要判断getView（int position，View view，ViewGroup parent）中的view是否为空，进行复用操作）
-2、设置适配器：flowLayout.setAdapter(mAdapter);
+- **代码实现**  
+1、适配器的实现  
+  - 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]   
+  - 自定义适配器，继承`BaseFlowAdapter`  
 
+2、设置适配器：flowView.setAdapter(Adapter);
+
+```java
 例：
 private void update2() {
         mList.clear();
@@ -75,13 +78,12 @@ private void update2() {
             mList.add("压力背包");
         }
         mAdapter.setData(mList, true);
-        // 直接实现FlowView的setAdapter(BaseAdapter adapter)方法即可
-        flowLayout.setAdapter(mAdapter);
+        // 设置适配器
+        flowView.setAdapter(mAdapter);
  }
- 
 
  // item的点击事件
- flowLayout.setOnItemClickListener(new FlowLayout.OnItemClickListener() {
+ flowView.setOnItemClickListener(new FlowView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
                 Toast.makeText(FlowActivity.this, "我是" + position + "号",
@@ -113,6 +115,8 @@ limitations under the License.
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg
+
+[SimpleFlowAdapter]:https://github.com/albert-lii/FlowView/blob/master/flowview/src/main/java/com/liyi/flow/adapter/SimpleFlowAdapter.java
 
 [SUtils]:https://github.com/albert-lii/SUtils
 [AutoGridView]:https://github.com/albert-lii/AutoGridView
