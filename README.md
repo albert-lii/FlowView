@@ -3,8 +3,7 @@
 ![jcentersvg] ![releasesvg] ![apisvg] [![license][licensesvg]][license] 
 
 ## 关于
-FlowView是一款流布局控件，采用Adapter模式，可以自定义item，更加灵活，使用起来就和ListView与BaseAdapter搭配一样简单，提供各种对齐方式，可以自适应
-高度，也可以设置item的高度，可以控制item的最大显示行数...
+FlowView是一款流布局控件，采用Adapter模式，可以自定义item，更加灵活，使用起来就和ListView与BaseAdapter搭配一样简单，提供各种对齐方式，可以自适应高度，也可以设置item的高度，可以控制item的最大显示行数...
 
 ## 推荐
 - [SUtils][SUtils] 轻量的常用的工具类库
@@ -21,7 +20,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 - 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi.view:flowview:1.0.8'
+         compile 'com.liyi.view:flowview:1.1.0'
     }
 ```
 - 使用Maven
@@ -29,7 +28,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
  <dependency>
    <groupId>com.liyi.view</groupId>
    <artifactId>flowview</artifactId>
-   <version>1.0.8</version>
+   <version>1.1.0</version>
    <type>pom</type>
  </dependency>
 ```
@@ -119,5 +118,5 @@ limitations under the License.
 
 [SUtils]:https://github.com/albert-lii/SUtils
 [AutoGridView]:https://github.com/albert-lii/AutoGridView
-[demogif]:https://github.com/albert-lii/FlowView/blob/master/screenshot/flowview.gif
+[demogif]:https://github.com/albert-lii/FlowView/blob/master/screenshot/demo.gif
 
