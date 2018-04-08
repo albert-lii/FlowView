@@ -1,6 +1,6 @@
 # FlowView
 
-![jcentersvg] ![releasesvg] ![apisvg] [![license][licensesvg]][license] 
+![releasesvg] ![apisvg] [![license][licensesvg]][license] 
 
 ## 关于
 FlowView是一款流布局控件，采用Adapter模式，可以自定义item，更加灵活，使用起来就和ListView与BaseAdapter搭配一样简单，提供各种对齐方式，可以自适应高度，也可以设置item的高度，可以控制item的最大显示行数...
@@ -108,9 +108,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.8-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.8-0f80c1.svg
+[releasesvg]: https://img.shields.io/badge/Release-v1.1.0-0f80c1.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
