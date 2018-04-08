@@ -14,8 +14,6 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 
 ![演示][demogif]
 
-> **博客详情：http://blog.csdn.net/liyi1009365545/article/details/77963829**
-
 ## 添加依赖
 - 使用Gradle
 ```java
@@ -60,8 +58,8 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 
 - **代码实现**  
 1、适配器的实现  
-  - 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]   
-  - 自定义适配器，继承`BaseFlowAdapter`  
+  - 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]（注：`SimpleFlowAdapter`使用时必须实现setLoadData()方法）
+  - 自定义适配器，继承`BaseFlowAdapter`  
 
 2、设置适配器：flowView.setAdapter(Adapter);
 
@@ -110,9 +108,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[releasesvg]: https://img.shields.io/badge/Release-v1.1.0-0f80c1.svg
+[releasesvg]: https://img.shields.io/badge/Release-v1.1.0-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
-[licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
+[licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg
 
