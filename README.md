@@ -57,9 +57,9 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ```
 
 - **代码实现**  
-1、适配器的实现  
-  - 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]（注：`SimpleFlowAdapter`使用时必须实现setLoadData()方法）
-  - 自定义适配器，继承`BaseFlowAdapter`  
+1、适配器的实现    
+  - 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]（注：`SimpleFlowAdapter`使用时必须实现setLoadData()方法）    
+  - 自定义适配器，继承`BaseFlowAdapter`  
 
 2、设置适配器：flowView.setAdapter(Adapter);
 
