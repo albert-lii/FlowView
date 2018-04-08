@@ -7,10 +7,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liyi.flow.adapter.BaseFlowAdapter;
+
 import java.util.ArrayList;
 
 
-public class MainAdapter extends BaseAdapter {
+public class MainAdapter extends BaseFlowAdapter {
     private ArrayList<String> mList;
     private boolean showImg;
 
@@ -26,16 +28,6 @@ public class MainAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return mList != null ? mList.size() : 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
     }
 
     @Override

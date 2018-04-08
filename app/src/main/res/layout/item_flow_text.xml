@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text_blue"
+    android:background="#ececec"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="5dp">
 
@@ -18,7 +19,7 @@
         android:id="@+id/tv_item_flow_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="#222222"
         android:textSize="14sp" />
 
     <ImageView

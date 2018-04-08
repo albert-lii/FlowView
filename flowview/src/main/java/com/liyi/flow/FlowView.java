@@ -6,8 +6,8 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
+import com.liyi.flow.adapter.BaseFlowAdapter;
 import com.liyi.view.R;
 
 import java.util.ArrayList;
@@ -33,36 +33,41 @@ public class FlowView extends ViewGroup {
     // 默认流布局的纵向间距
     private final int DEF_FlOW_VSPACE = 10;
 
+    /**
+     * 变量
+     */
+    // 流布局的横向排列方式
     private int mFlowHorAlign;
+    // 流布局的纵向排列方式
     private int mFlowVertAlign;
+    // 流布局的行高
     private float mFlowHeight;
+    // 流布局的最大显示行数
     private int mFlowMaxRows;
+    // 流布局的 item 之间的横向间距
     private float mFlowHspace;
+    // 流布局的 item 之间的纵向间距
     private float mFlowVspace;
     // 记录流布局的行信息 ===> item 的个数、最后一个 item 的序号、行高度
     private ArrayList<float[]> mFlowParamList;
 
-    private BaseAdapter mAdapter;
-    private Context mContext;
+    private BaseFlowAdapter mAdapter;
     private OnItemClickListener mItemClickListener;
 
 
     public FlowView(Context context) {
         super(context);
-        this.mContext = context;
-        init(null);
+        init(context, null);
     }
 
     public FlowView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mContext = context;
-        init(attrs);
+        init(context, attrs);
     }
 
     public FlowView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.mContext = context;
-        init(attrs);
+        init(context, attrs);
     }
 
     /**
@@ -70,10 +75,10 @@ public class FlowView extends ViewGroup {
      *
      * @param attrs
      */
-    private void init(AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs) {
         initParams();
         if (attrs != null) {
-            TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.FlowView);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlowView);
             if (a != null) {
                 mFlowHorAlign = a.getInt(R.styleable.FlowView_flow_horalign, mFlowHorAlign);
                 mFlowVertAlign = a.getInt(R.styleable.FlowView_flow_vertalign, mFlowVertAlign);
@@ -96,18 +101,18 @@ public class FlowView extends ViewGroup {
         mFlowParamList = new ArrayList<float[]>();
     }
 
-    public void setAdapter(BaseAdapter adapter) {
+    public void setAdapter(BaseFlowAdapter adapter) {
         this.mAdapter = adapter;
         removeAllViews();
         if (mAdapter != null && mAdapter.getCount() > 0) {
-            addItemView();
+            addItemViews();
         }
     }
 
     /**
      * 添加 itemView
      */
-    private void addItemView() {
+    private void addItemViews() {
         for (int i = 0; i < mAdapter.getCount(); i++) {
             View itemView = mAdapter.getView(i, null, this);
             addItemClickListener(itemView, i);
@@ -313,7 +318,6 @@ public class FlowView extends ViewGroup {
             y += height + mFlowVspace;
         }
     }
-
 
     public interface OnItemClickListener {
         void onItemClick(int position, View view);

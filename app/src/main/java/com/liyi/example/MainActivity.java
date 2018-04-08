@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_vtop, btn_vmiddle, btn_vbottom;
     private Button btn_row1, btn_row2, btn_row_nolimit;
     private Button btn_update1, btn_update2, btn_update3;
-    private FlowView flowLayout;
+    private FlowView flowVi;
 
     private MainAdapter mAdapter;
     private ArrayList<String> mList;
@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_update1 = (Button) findViewById(R.id.btn_update1);
         btn_update2 = (Button) findViewById(R.id.btn_update2);
         btn_update3 = (Button) findViewById(R.id.btn_update3);
-        flowLayout = (FlowView) findViewById(R.id.flowLayout);
+        flowVi = (FlowView) findViewById(R.id.flowVi);
 
         mAdapter = new MainAdapter();
         mList = new ArrayList<String>();
@@ -64,7 +64,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_update1.setOnClickListener(this);
         btn_update2.setOnClickListener(this);
         btn_update3.setOnClickListener(this);
-        flowLayout.setOnItemClickListener(new FlowView.OnItemClickListener() {
+        flowVi.setOnItemClickListener(new FlowView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
                 Toast.makeText(MainActivity.this, "我是" + position + "号", Toast.LENGTH_SHORT).show();
@@ -76,31 +76,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_hleft:
-                flowLayout.setFlowHorAlign(FlowConfig.FLOW_HOR_LEFT);
+                flowVi.setFlowHorAlign(FlowConfig.FLOW_HOR_LEFT);
                 break;
             case R.id.btn_hmiddle:
-                flowLayout.setFlowHorAlign(FlowConfig.FLOW_HOR_MIDDLE);
+                flowVi.setFlowHorAlign(FlowConfig.FLOW_HOR_MIDDLE);
                 break;
             case R.id.btn_hright:
-                flowLayout.setFlowHorAlign(FlowConfig.FLOW_HOR_RIGHT);
+                flowVi.setFlowHorAlign(FlowConfig.FLOW_HOR_RIGHT);
                 break;
             case R.id.btn_vtop:
-                flowLayout.setFlowVertAlign(FlowConfig.FLOW_VERT_TOP);
+                flowVi.setFlowVertAlign(FlowConfig.FLOW_VERT_TOP);
                 break;
             case R.id.btn_vmiddle:
-                flowLayout.setFlowVertAlign(FlowConfig.FLOW_VERT_MIDDLE);
+                flowVi.setFlowVertAlign(FlowConfig.FLOW_VERT_MIDDLE);
                 break;
             case R.id.btn_vbottom:
-                flowLayout.setFlowVertAlign(FlowConfig.FLOW_VERT_BOTTOM);
+                flowVi.setFlowVertAlign(FlowConfig.FLOW_VERT_BOTTOM);
                 break;
             case R.id.btn_maxr1:
-                flowLayout.setFlowMaxRows(1);
+                flowVi.setFlowMaxRows(1);
                 break;
             case R.id.btn_maxr2:
-                flowLayout.setFlowMaxRows(2);
+                flowVi.setFlowMaxRows(2);
                 break;
             case R.id.btn_maxr3:
-                flowLayout.setFlowMaxRows(FlowConfig.INVALID_VAL);
+                flowVi.setFlowMaxRows(FlowConfig.INVALID_VAL);
                 break;
             case R.id.btn_update1:
                 update1();
@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mList.add("静静");
         }
         mAdapter.setData(mList, false);
-        flowLayout.setAdapter(mAdapter);
+        flowVi.setAdapter(mAdapter);
     }
 
     private void update2() {
@@ -139,7 +139,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mList.add("压力背包");
         }
         mAdapter.setData(mList, true);
-        flowLayout.setAdapter(mAdapter);
+        flowVi.setAdapter(mAdapter);
     }
 
     private void update3() {
@@ -153,6 +153,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mList.add("弗兰克斯坦");
         }
         mAdapter.setData(mList, true);
-        flowLayout.setAdapter(mAdapter);
+        flowVi.setAdapter(mAdapter);
     }
 }
