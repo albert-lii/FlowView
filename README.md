@@ -5,10 +5,6 @@
 ## 关于
 FlowView是一款流布局控件，采用Adapter模式，可以自定义item，更加灵活，使用起来就和ListView与BaseAdapter搭配一样简单，提供各种对齐方式，可以自适应高度，也可以设置item的高度，可以控制item的最大显示行数...
 
-## 推荐
-- [SUtils][SUtils] 轻量的常用的工具类库
-- [AutoGridView][AutoGridView] 宫格控件，QQ空间九宫格、普通宫格模式、点击添加照片...
-
 ## 演示
 先来看看效果吧！  
 
@@ -17,6 +13,15 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
 ## 添加依赖
 - 使用Gradle
 ```java
+  // 注：如果添加依赖成功，则此句不必添加，此句作用仅为当项目在被审核时，紧急需要使用时添加
+   allprojects {
+       repositories {
+           ...
+           // 如果添加依赖时，报找不到项目时（项目正在审核），可以添加此句maven地址，如果找到项目，可不必添加
+           maven { url "https://dl.bintray.com/albertlii/android-maven/" }
+       }
+    }
+    
     dependencies {
          compile 'com.liyi.view:flowview:1.1.0'
     }
