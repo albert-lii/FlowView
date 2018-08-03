@@ -23,7 +23,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
     }
     
     dependencies {
-         compile 'com.liyi.view:flowview:1.1.0'
+         compile 'com.liyi.view:flowview:1.2.1'
     }
 ```
 - 使用Maven
@@ -31,29 +31,29 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
  <dependency>
    <groupId>com.liyi.view</groupId>
    <artifactId>flowview</artifactId>
-   <version>1.1.0</version>
+   <version>1.2.1</version>
    <type>pom</type>
  </dependency>
 ```
 
 ## 自定义属性
-- flow_horalign（item 在一行中的横向对齐方式，默认为 left） 
+- flow_horizontalAlign（item 在一行中的横向对齐方式，默认为 left） 
   - left（item 左对齐）
   - middle（item 横向居中对齐）
   - right（item 右对齐）  
   
-- flow_vertalign（item 在一行中的纵向对齐方式，默认为 middle，当设置 flow_height 时，此属性无效）   
+- flow_verticalAlign（item 在一行中的纵向对齐方式，默认为 middle，当设置 flow_height 时，此属性无效）   
   - top（item 上对齐）
   - middle（item 纵向居中对齐）
   - bottom（item 底部对齐）  
 
 - flow_height（流布局的 item 的高度，默认为自适应）
-- flow_hspace（流布局的 item 横向间距，默认为 10px）
-- flow_vspace（流布局的 item 纵向间距，默认为 10px）
-- flow_maxrows（流布局最多显示的行数，默认为不限制）
+- flow_horizontalSpace（流布局的 item 横向间距，默认为 10px）
+- flow_verticalSpace（流布局的 item 纵向间距，默认为 10px）
+- flow_maxRow（流布局最多显示的行数，默认为不限制）
 
 ## 使用方法
-### XML
+### XML 中 添加 FlowView
 ```java
  <com.liyi.flow.FlowView
     android:id="@+id/flowVi"
@@ -61,38 +61,30 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
     android:layout_height="wrap_content" />
 ```
 
-### 代码实现
-1、适配器的实现    
-- 使用提供的默认的简单适配器[`SimpleFlowAdapter`][SimpleFlowAdapter]（注：`SimpleFlowAdapter`使用时必须实现setLoadData()方法）    
-- 自定义适配器，继承`BaseFlowAdapter`  
+### 代码中使用 FlowView
+#### 三种适配器   
+- [`SimpleFlowAdapter`][SimpleFlowAdapter]：简用适配器，直接使用，封装有默认布局，[demo示例][SimpleFlowActivity]   
+- [`QuickFlowAdapter`][QuickFlowAdapter]：快捷适配器，继承自`BaseFlowAdapter`,[demo示例][QuickFlowActivity]   
+- [`BaseFlowAdapter`][BaseFlowAdapter]：基础适配器，不推荐直接使用，推荐使用`QuickFlowAdapter`
 
-2、设置适配器：flowView.setAdapter(Adapter);
-
+#### 简单示例  
 ```java
-例：
-private void update2() {
-        mList.clear();
-        for (int i = 0; i < 4; i++) {
-            mList.add("缘分像一道桥");
-            mList.add("Get it  on  the  floor");
-            mList.add("头文字D");
-            mList.add("albert-lii");
-            mList.add("be  the  burning fire");
-            mList.add("压力背包");
-        }
-        mAdapter.setData(mList, true);
-        // 设置适配器
-        flowView.setAdapter(mAdapter);
- }
-
- // item的点击事件
- flowView.setOnItemClickListener(new FlowView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(FlowActivity.this, "我是" + position + "号",
-                Toast.LENGTH_SHORT).show();
-            }
-  });
+注：此处使用的是 SimpleFlowAdapter，SimpleFlowAdapter 必须设置 setLoadData() 来处理数据
+ mAdapter = new SimpleFlowAdapter(mList);
+ mAdapter.setLoadData(new SimpleFlowAdapter.LoadData<String>() {
+      @Override
+      public void onLoadData(int position, String item, TextView textView) {
+           textView.setText(item);
+      }
+});
+flowView.setAdapter(mAdapter);
+// 单击事件
+flowView.setOnItemClickListener(new FlowView.OnItemClickListener() {
+    @Override
+    public void onItemClick(int position, View view) {
+        Toast.makeText(SimpleFlowActivity.this, "我是" + position + "号", Toast.LENGTH_SHORT).show();
+    }
+});
 ```
 
 ## 赞赏
@@ -113,13 +105,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[releasesvg]: https://img.shields.io/badge/version-1.1.0-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/version-1.2.1-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/sdk-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg
 
 [SimpleFlowAdapter]:https://github.com/albert-lii/FlowView/blob/master/flowview/src/main/java/com/liyi/flow/adapter/SimpleFlowAdapter.java
+[QuickFlowAdapter]:https://github.com/albert-lii/FlowView/blob/master/flowview/src/main/java/com/liyi/flow/adapter/QuickFlowAdapter.java
+[BaseFlowAdapter]:https://github.com/albert-lii/FlowView/blob/master/flowview/src/main/java/com/liyi/flow/adapter/BaseFlowAdapter.java
+
+[SimpleFlowActivity]:https://github.com/albert-lii/FlowView/blob/master/app/src/main/java/com/liyi/example/SimpleFlowActivity.java
+[QuickFlowActivity]:https://github.com/albert-lii/FlowView/blob/master/app/src/main/java/com/liyi/example/QuickFlowActivity.java
 
 [SUtils]:https://github.com/albert-lii/SUtils
 [AutoGridView]:https://github.com/albert-lii/AutoGridView
