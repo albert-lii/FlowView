@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".SimpleFlowActivity"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".QuickFlowActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

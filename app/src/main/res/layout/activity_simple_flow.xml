@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/btn_hleft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="横向左对齐"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_hmiddle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="横向居中对齐"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_hright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="横向右对齐"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <Button
+                android:id="@+id/btn_vtop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="纵向上对齐"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_vmiddle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="纵向居中对齐"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_vbottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="纵向底部对齐"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <Button
+                android:id="@+id/btn_maxr1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="最多显示1行"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_maxr2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="最多显示2行"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_maxr3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="不限制行数"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <Button
+                android:id="@+id/btn_update1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="数据刷新1"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_update2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="数据刷新2"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_update3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:onClick="onClick"
+                android:text="数据刷新3"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <com.liyi.flow.FlowView
+            android:id="@+id/flowVi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+</ScrollView>

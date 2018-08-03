@@ -1,45 +1,40 @@
 package com.liyi.flow.adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.liyi.view.R;
 
 import java.util.List;
 
-/**
- * 简单的适配器
- */
-public class SimpleFlowAdapter<T> extends BaseFlowAdapter {
-    private List<T> mTagList;
-    private LoadData mLoadData;
+public class SimpleFlowAdapter<T, K extends BaseFlowHolder> extends QuickFlowAdapter<T, K> {
+    private LoadData<T> mLoadData;
 
-    public void setData(List<T> list) {
-        this.mTagList = list;
+    public SimpleFlowAdapter() {
+
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.flow_view_item_simple_text, null);
-        TextView tv_content = (TextView) convertView.findViewById(R.id.tv_flow_view_simple_text);
-        if (mLoadData != null) {
-            mLoadData.onLoadData(position, mTagList.get(position), tv_content);
-        }
-        return convertView;
+    public SimpleFlowAdapter(List<T> list) {
+        setData(list);
+        addItemType(0, R.layout.flow_view_item_simple_text);
     }
 
-    @Override
-    public int getCount() {
-        return mTagList != null ? mTagList.size() : 0;
-    }
-
-    public void setLoadData(LoadData loadData) {
+    public void setLoadData(LoadData<T> loadData) {
         this.mLoadData = loadData;
     }
 
-    public interface LoadData {
-        void onLoadData(int position, Object data, TextView view);
+    @Override
+    protected int onHandleViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    protected void onHandleView(int position, K holder, T item) {
+        if (mLoadData != null) {
+            mLoadData.onLoadData(position, item, holder.getTextView(R.id.tv_flow_view_simple_text));
+        }
+    }
+
+    public interface LoadData<V> {
+        void onLoadData(int position, V item, TextView textView);
     }
 }
