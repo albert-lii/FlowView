@@ -23,7 +23,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
     }
     
     dependencies {
-         compile 'com.liyi.view:flowview:1.2.1'
+         compile 'com.liyi.view:flowview:1.2.2'
     }
 ```
 - 使用Maven
@@ -31,7 +31,7 @@ FlowView是一款流布局控件，采用Adapter模式，可以自定义item，�
  <dependency>
    <groupId>com.liyi.view</groupId>
    <artifactId>flowview</artifactId>
-   <version>1.2.1</version>
+   <version>1.2.2</version>
    <type>pom</type>
  </dependency>
 ```
@@ -105,7 +105,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[releasesvg]: https://img.shields.io/badge/version-1.2.1-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/version-1.2.2-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/sdk-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
