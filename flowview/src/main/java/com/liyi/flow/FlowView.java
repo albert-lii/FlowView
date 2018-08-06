@@ -125,7 +125,7 @@ public class FlowView extends ViewGroup {
     }
 
     /**
-     * 通知更新
+     * 通知刷新
      */
     private void notifyChanged() {
         if (mAdapter == null) return;
@@ -150,9 +150,7 @@ public class FlowView extends ViewGroup {
                             removeViewAt(i);
                             addView(createItemView(i), i);
                         }
-                    }
-                    // newData 长度大于 oldData，直接在尾部添加 item
-                    else {
+                    } else {
                         addView(createItemView(i));
                     }
                 }
