@@ -30,12 +30,12 @@ public class QuickFlowActivity extends Activity {
         }
 
         @Override
-        protected int onHandleViewType(int position) {
+        public int onHandleViewType(int position) {
             return 0;
         }
 
         @Override
-        protected void onHandleView(int position, BaseFlowHolder holder, String item) {
+        public void onHandleViewHolder(BaseFlowHolder holder, int position, String item) {
             holder.getTextView(R.id.tv_flow_view_simple_text).setText(item);
         }
     }

@@ -13,7 +13,6 @@ import com.liyi.flow.adapter.BaseFlowHolder;
 import com.liyi.view.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -54,11 +53,11 @@ public class FlowView extends ViewGroup {
     // 记录流布局的行信息 ===> item 的个数、最后一个 item 的序号、行高度
     private ArrayList<float[]> mRowInfoList;
 
+    private int mOldSize;
     private BaseFlowAdapter mAdapter;
     private AdapterObserver mDataSetObserver;
     private OnItemClickListener mItemClickListener;
     private OnItemLongClickListener mItemLongClickListener;
-    private List mData;
 
 
     public FlowView(Context context) {
@@ -118,11 +117,11 @@ public class FlowView extends ViewGroup {
             mDataSetObserver = new AdapterObserver();
             // 注册观察者
             mAdapter.registerDataSetObserver(mDataSetObserver);
-            if (mAdapter.getCount() > 0) {
+            mOldSize = mAdapter.getItemCount();
+            if (mOldSize > 0) {
                 addItemViews();
             }
         }
-        mData = mAdapter.getData();
     }
 
     /**
@@ -130,50 +129,37 @@ public class FlowView extends ViewGroup {
      */
     private void notifyChanged() {
         if (mAdapter == null) return;
-        int newSize = mAdapter.getCount();
-        int oldSize = (mData != null ? mData.size() : 0);
+        int newSize = mAdapter.getItemCount();
         if (newSize == 0) {
-            if (oldSize == 0) {
+            if (mOldSize == 0) {
                 return;
             } else {
                 removeAllViews();
-                mData.clear();
             }
         } else {
-            List newData = mAdapter.getData();
-            if (oldSize == 0) {
+            if (mOldSize == 0) {
                 addItemViews();
             } else {
-                if (!newData.equals(mData)) {
-                    for (int i = 0; i < newSize; i++) {
-                        Object newItem = newData.get(i);
-                        Object oldItem = mData.get(i);
-                        // 对比 newData 与 oldData，
-                        if (oldSize > i) {
-                            if (!newItem.equals(oldItem)) {
-                                View itemView = getChildAt(i);
-                                BaseFlowHolder holder = (BaseFlowHolder) itemView.getTag();
-                                // 如果 newItem 的 viewType 与 oldItem 的viewType相等，则直接更新 tiem
-                                if (holder != null && mAdapter.getItemViewType(i) == holder.getViewType()) {
-                                    mAdapter.getView(i, itemView, this);
-                                } else {
-                                    // 将 oldData 中与 newData 相同位置的不等元素所对应的 item 删除，并根据 newData 创建新的 item
-                                    removeViewAt(i);
-                                    addView(createItemView(i), i);
-                                }
-                            }
-                        }
-                        // newData 长度大于 oldData，直接在尾部添加 item
-                        else {
-                            addView(createItemView(i));
+                for (int i = 0; i < newSize; i++) {
+                    if (mOldSize > i) {
+                        View itemView = getChildAt(i);
+                        BaseFlowHolder holder = (BaseFlowHolder) itemView.getTag();
+                        if (holder != null && mAdapter.getItemViewType(i) == holder.getViewType()) {
+                            mAdapter.getView(i, itemView, this);
+                        } else {
+                            removeViewAt(i);
+                            addView(createItemView(i), i);
                         }
                     }
-                    // 删除多余的 item
-                    int diff = oldSize - newSize;
-                    for (int i = 0; i < diff; i++) {
-                        removeViewAt(newSize + i);
+                    // newData 长度大于 oldData，直接在尾部添加 item
+                    else {
+                        addView(createItemView(i));
                     }
-                    mData = mAdapter.getData();
+                }
+                // 删除多余的 item
+                int diff = mOldSize - newSize;
+                for (int i = 0; i < diff; i++) {
+                    removeViewAt(newSize + i);
                 }
             }
         }
@@ -183,7 +169,7 @@ public class FlowView extends ViewGroup {
      * 添加 itemView
      */
     private void addItemViews() {
-        for (int i = 0; i < mAdapter.getCount(); i++) {
+        for (int i = 0; i < mAdapter.getItemCount(); i++) {
             addView(createItemView(i));
         }
     }
@@ -491,4 +477,20 @@ public class FlowView extends ViewGroup {
             super.onInvalidated();
         }
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if (mAdapter != null) {
+            if (mDataSetObserver != null) {
+                // 删除已经存在的观察者
+                mAdapter.unregisterDataSetObserver(mDataSetObserver);
+            }
+            mAdapter = null;
+        }
+        mItemClickListener = null;
+        mItemLongClickListener = null;
+        super.onDetachedFromWindow();
+    }
+
+
 }

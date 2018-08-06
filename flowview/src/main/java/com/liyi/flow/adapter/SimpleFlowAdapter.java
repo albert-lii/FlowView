@@ -6,7 +6,7 @@ import com.liyi.view.R;
 
 import java.util.List;
 
-public class SimpleFlowAdapter<T, K extends BaseFlowHolder> extends QuickFlowAdapter<T, K> {
+public class SimpleFlowAdapter<T, VH extends BaseFlowHolder> extends QuickFlowAdapter<T, VH> {
     private LoadData<T> mLoadData;
 
     public SimpleFlowAdapter() {
@@ -23,12 +23,12 @@ public class SimpleFlowAdapter<T, K extends BaseFlowHolder> extends QuickFlowAda
     }
 
     @Override
-    protected int onHandleViewType(int position) {
+    public int onHandleViewType(int position) {
         return 0;
     }
 
     @Override
-    protected void onHandleView(int position, K holder, T item) {
+    public void onHandleViewHolder(VH holder, int position, T item) {
         if (mLoadData != null) {
             mLoadData.onLoadData(position, item, holder.getTextView(R.id.tv_flow_view_simple_text));
         }

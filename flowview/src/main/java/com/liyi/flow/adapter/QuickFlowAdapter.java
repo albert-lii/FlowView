@@ -12,17 +12,32 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 
-public abstract class QuickFlowAdapter<T, K extends BaseFlowHolder> extends BaseFlowAdapter<T> {
-    private final int LAYOUT_NOT_FOUND = -404;
+public abstract class QuickFlowAdapter<T, VH extends BaseFlowHolder> extends BaseFlowAdapter<VH> {
+    private static final int LAYOUT_NOT_FOUND = -404;
 
     private LayoutInflater mLayoutInflater;
     private SparseIntArray mLayoutTypes;
+    protected List<T> mData;
 
 
     public QuickFlowAdapter() {
 
+    }
+
+    public void setData(List<T> list) {
+        this.mData = list;
+    }
+
+    public List<T> getData() {
+        return mData;
+    }
+
+    public void updateData(List<T> list) {
+        setData(list);
+        notifyDataSetChanged();
     }
 
     /**
@@ -31,7 +46,7 @@ public abstract class QuickFlowAdapter<T, K extends BaseFlowHolder> extends Base
      * @param type     此处的 type 必须与 getItemViewType() 中返回的 type 对应
      * @param layoutId
      */
-    protected void addItemType(int type, @LayoutRes int layoutId) {
+    public void addItemType(int type, @LayoutRes int layoutId) {
         if (mLayoutTypes == null) {
             mLayoutTypes = new SparseIntArray();
         }
@@ -44,26 +59,26 @@ public abstract class QuickFlowAdapter<T, K extends BaseFlowHolder> extends Base
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mLayoutInflater == null) mLayoutInflater = LayoutInflater.from(parent.getContext());
-        int viewType = getItemViewType(position);
-        T item = mData.get(position);
-        K holder = null;
-        if (convertView == null) {
-            convertView = getItemView(getLayoutId(viewType), parent);
-            holder = createBaseItemHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (K) convertView.getTag();
-        }
-        holder.setViewType(viewType);
-        onHandleView(position, holder, item);
-        return convertView;
+        View convertView = getItemView(getLayoutId(viewType), parent);
+        VH holder = createBaseViewHolder(convertView);
+        return holder;
     }
 
-    protected abstract int onHandleViewType(int position);
+    @Override
+    public void onBindViewHolder(VH holder, int position) {
+        onHandleViewHolder(holder, position, mData.get(position));
+    }
 
-    protected abstract void onHandleView(int position, K holder, T item);
+    public abstract int onHandleViewType(int position);
+
+    public abstract void onHandleViewHolder(VH holder, int position, T item);
+
+    @Override
+    public int getItemCount() {
+        return mData != null ? mData.size() : 0;
+    }
 
     protected View getItemView(int layoutResId, ViewGroup parent) {
         if (layoutResId != LAYOUT_NOT_FOUND) {
@@ -76,37 +91,36 @@ public abstract class QuickFlowAdapter<T, K extends BaseFlowHolder> extends Base
         return mLayoutTypes.get(vieType, LAYOUT_NOT_FOUND);
     }
 
-
-    protected K createBaseItemHolder(View view) {
+    protected VH createBaseViewHolder(View view) {
         Class temp = getClass();
         Class z = null;
         while (z == null && null != temp) {
             z = getInstancedGenericKClass(temp);
             temp = temp.getSuperclass();
         }
-        K k;
+        VH vh;
         // 泛型擦除会导致 z 为 null
         if (z == null) {
-            k = (K) new BaseFlowHolder(view);
+            vh = (VH) new BaseFlowHolder(view);
         } else {
-            k = createGenericKInstance(z, view);
+            vh = createGenericKInstance(z, view);
         }
-        return k != null ? k : (K) new BaseFlowHolder(view);
+        return vh != null ? vh : (VH) new BaseFlowHolder(view);
     }
 
     @SuppressWarnings("unchecked")
-    private K createGenericKInstance(Class z, View view) {
+    private VH createGenericKInstance(Class z, View view) {
         try {
             Constructor constructor;
             // inner and unstatic class
             if (z.isMemberClass() && !Modifier.isStatic(z.getModifiers())) {
                 constructor = z.getDeclaredConstructor(getClass(), View.class);
                 constructor.setAccessible(true);
-                return (K) constructor.newInstance(this, view);
+                return (VH) constructor.newInstance(this, view);
             } else {
                 constructor = z.getDeclaredConstructor(View.class);
                 constructor.setAccessible(true);
-                return (K) constructor.newInstance(view);
+                return (VH) constructor.newInstance(view);
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
